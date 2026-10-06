@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的博客 · 内容管理</title>
+  <meta name="robots" content="noindex, nofollow" />
+</head>
+<body>
+  <!-- Sveltia CMS（Decap CMS 的现代维护分支）：纯静态后台，用 GitHub 令牌登录，无需服务器 -->
+  <script type="module">
+    // 主用国内可访问的 jsDelivr，失败时回退 unpkg
+    try {
+      await import('https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js');
+    } catch (e) {
+      await import('https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js');
+    }
+  </script>
+</body>
+</html>

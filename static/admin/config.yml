@@ -1,0 +1,90 @@
+# Sveltia CMS 配置文档：https://sveltiacms.app/
+# 后台地址：https://lingliaowo-dotcom.github.io/my-blog/admin/
+backend:
+  name: github
+  repo: lingliaowo-dotcom/my-blog
+  branch: main
+
+site_url: https://lingliaowo-dotcom.github.io/my-blog/
+
+# 双语存储：content/post/<slug>/index.zh.md 与 index.en.md
+# 文档：https://sveltiacms.app/en/docs/i18n/structures
+i18n:
+  structure: multiple_files
+  locales: [zh, en]
+  default_locale: zh
+
+# 允许中文等 Unicode 字符出现在目录名（URL slug）中
+slug:
+  encoding: unicode
+
+collections:
+  - name: posts
+    label: 文章
+    label_singular: 文章
+    folder: content/post
+    # 每篇文章一个独立目录，目录内为 index.<语言>.md（Hugo Page Bundle）
+    path: '{{slug}}/index'
+    extension: md
+    create: true
+    delete: true
+    i18n: true
+    # 支持多级子目录浏览
+    nested:
+      depth: 100
+      subfolders: true
+    slug:
+      template: '{{slug}}'
+      # 目录名决定文章 URL，仅允许新建时填写
+      editable: [create]
+      hint: 文章的网址目录名（如 hello-world，也可用中文），保存后不可修改
+    summary: '{{date | date("YYYY-MM-DD")}} · {{title}}'
+    # 上传的图片随文章放在同一目录
+    media_folder: ''
+    public_folder: ''
+    fields:
+      - name: title
+        label: 标题
+        widget: string
+        i18n: true
+      - name: date
+        label: 发布日期
+        widget: datetime
+        # 带时区（如 2026-10-07T15:30:00+08:00），避免 UTC 零点导致文章延迟发布
+        format: "YYYY-MM-DD'T'HH:mm:ssZZ"
+        i18n: duplicate
+      - name: description
+        label: 摘要
+        widget: text
+        required: false
+        i18n: true
+      - name: categories
+        label: 分类
+        widget: list
+        required: false
+        default: [随笔]
+        i18n: duplicate
+      - name: tags
+        label: 标签
+        widget: list
+        required: false
+        i18n: duplicate
+      - name: image
+        label: 封面图
+        widget: image
+        required: false
+        i18n: duplicate
+      - name: comments
+        label: 开启评论
+        widget: boolean
+        default: true
+        i18n: duplicate
+      - name: draft
+        label: 草稿（勾选后不在网站显示）
+        widget: boolean
+        default: false
+        i18n: duplicate
+      - name: body
+        label: 正文（Markdown）
+        widget: markdown
+        i18n: true
