@@ -22,9 +22,24 @@
     default = "auto"
 
 [comments]
-    enabled  = false
-    provider = "waline"
-    
+    enabled  = true
+    provider = "giscus"
+
+[comments.giscus]
+    repo            = "lingliaowo-dotcom/my-blog"
+    repoID          = "R_kgDOU-kg0w"
+    category        = "Announcements"
+    categoryID      = "DIC_kwDOU-kg084DHMp6"
+    mapping         = "pathname"
+    strict          = "1"
+    reactionsEnabled = "1"
+    emitMetadata    = "0"
+    inputPosition   = "top"
+    lightTheme      = "light"
+    darkTheme       = "dark"
+    lang            = "zh-CN"
+    loading         = "lazy"
+
 [comments.waline]
     # IMPORTANT: Replace this with your own Waline server URL!
     serverURL    = "https://waline-demo.liuhouliang.com/"

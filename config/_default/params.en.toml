@@ -27,3 +27,6 @@ SortBy              = "default"
     [article.license]
         enabled = true
         default = "Licensed under CC BY-NC-SA 4.0"
+
+[comments.giscus]
+    lang = "en"
